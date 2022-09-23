@@ -1,0 +1,102 @@
+<?php
+
+// exibir error
+ini_set('display_errors',1);
+ini_set('display_startup_erros',1);
+error_reporting(E_ALL);
+
+
+include 'conecta.php';
+
+//  monta a query
+$sql = "SELECT id_user, usuario, nome, sobrenome FROM  usuario";
+// executa a query
+$result = $conn->query($sql);
+
+
+if ($result) {
+
+    while ($aux_query = $result->fetch_assoc()) 
+    { ?>
+
+
+    <!-- Modal de Delete--> 
+        <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+            <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>          
+                    <div class="modal-body"> 
+                        Deseja realmente excluir este usuário?          
+                    </div>         
+                    <div class="modal-footer">                
+                        <a id="confirm" class="btn btn-primary"  href="excluir_user.php?edit=<?php echo $row['id_user']; ?>">Sim</a>             
+                        <a id="cancel" class="btn btn-default" data-dismiss="modal">N&atilde;o</a> 
+                    </div>        
+                </div>        
+            </div>       
+        </div> <!-- /.modal -->
+
+        <tr>
+          <th>
+            <div class="media align-items-center">
+              <a href="#" class="avatar rounded-circle mr-3">
+                <img alt="Image placeholder" src="../assets/img/theme/perfil1.jpg">
+              </a>
+              <div class="media-body">
+                <input type="hidden"><?php echo'' .$aux_query["id_user"]; ?></input>
+                <span class="mb-0 text-sm"><?php echo'' .$aux_query["usuario"]; ?></span>
+              </div>
+            </div>
+          </th>
+          <th>
+            <div class="media align-items-center">
+              <div class="media-body">
+                <span class="mb-0 text-sm"><?php echo '' .$aux_query["nome"]; ?></span>
+              </div>
+            </div>
+          </th>
+          <th>
+            <div class="media align-items-center">
+              <div class="media-body">
+                <span class="mb-0 text-sm"><?php echo '' .$aux_query["sobrenome"]; ?></span>
+              </div>
+            </div>
+          </th>
+          <td class="text-right">
+            <div class="dropdown">
+              <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                <a href="detalhar_user.html?id= <?php echo ''.$aux_query["id_user"];?>" class="dropdown-item" >Detalhes</a>
+
+                <a  href="atualizar_user.html?id=<?php echo ''.$aux_query["id_user"];?>" >Editar</a>
+                <button class="dropdown-item" data-toggle="modal" data-target="#delete-modal">Excluir</button>
+              </div>
+            </div>
+          </td>
+        </tr> <?php
+    }
+
+    $result->free();
+
+} else {
+    echo "Erro: " . $sql . "<br>" . $conn->error;
+}
+
+// fecha ponto de conexão
+$conn->close();
+
+?>
+UPDATE 1:
+
+Aqui está o código do exclui_user.php e dá erro na linha 11 ($id = $_POST["id_user"];)
+
+<?php 
+// exibir error ini_set('display_errors',1); 
+ini_set('display_startup_erros',1); 
+er
