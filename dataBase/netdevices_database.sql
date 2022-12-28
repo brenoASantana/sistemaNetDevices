@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `acesso_usuarios` (
-  `id` int(4) NOT NULL,
+ `id` int(4) NOT NULL,
   `nome` varchar(50) COLLATE utf8_bin NOT NULL,
   `email` varchar(50) COLLATE utf8_bin NOT NULL,
   `senha` varchar(50) COLLATE utf8_bin NOT NULL
